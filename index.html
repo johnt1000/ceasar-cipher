@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimal-ui">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+  <style>
+    hr {
+      margin: 2.0rem 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <hr>
+    <header>
+      <h1>Ceasar Cipher</h1>
+    </header>
+    <hr>
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="column">
+            <p>
+              The Caesar Cipher is one of the simplest and most well-known encryption techniques. It's a
+              type of substitution cipher where each letter in the original text is 'shifted' a fixed
+              number of positions down the alphabet.
+            </p>
+            <p>
+              For example, with a shift of 1, A would be replaced by B, B would become C, and so on. The
+              shift is the key to the cipher. The name "Caesar Cipher" comes from the Roman Emperor Julius
+              Caesar, who reportedly used this cipher with a shift of 3 to communicate with his generals.
+            </p>
+            <p>
+              The Caesar Cipher is a symmetric cipher, which means that to decrypt the message you would
+              do the reverse process, i.e., shift the letters 3 positions up the alphabet.
+            </p>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="column">
+            <section>
+              <h2>Encode</h2>
+              <form>
+                <textarea id="text-encode" onkeyup="encode()" placeholder="Message"></textarea>
+                <textarea id="result-encode" placeholder="Code" disabled></textarea>
+                <button type="button" class="button" onclick="clearTextareasEncode()">Clear</button>
+                <button type="button" class="button" onclick="copyEncode()">Copy Code</button>
+              </form>
+            </section>
+          </div>
+          <div class="column">
+            <h2>Decode</h2>
+            <form>
+              <textarea id="text-decode" onkeyup="decode()" placeholder="Code"></textarea>
+              <textarea id="result-decode" placeholder="Message" disabled></textarea>
+              <button type="button" class="button" onclick="clearTextareasDecode()">Clear</button>
+              <button type="button" class="button" onclick="copyDecode()">Copy Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <hr>
+    <footer>
+      <div class="container">
+        Released under
+        <a class="Link" href="https://github.com/johnt1000/ceasar-cipher/blob/main/LICENSE" rel="noopener noreferrer" target="_blank">
+          MIT License
+        </a> | Copyright © 2024
+        <a class="Link" href="https://github.com/johnt1000" rel="noopener noreferrer" target="_blank">
+          Jônatas Rodrigues
+        </a>.
+      </div>
+    </footer>
+  </div>
+  <script>
+    function clearTextareasEncode() {
+      document.getElementById("text-encode").value = ""
+      document.getElementById("result-encode").innerText = ""
+    }
+
+    function clearTextareasDecode() {
+      document.getElementById("text-decode").value = ""
+      document.getElementById("result-decode").innerText = ""
+    }
+
+    function encode() {
+      const textForEncode = document.getElementById("text-encode").value
+      const textareaResult = document.getElementById("result-encode")
+
+      const encryptedMessage = CaesarCipher.encrypt(textForEncode, 3)
+      textareaResult.innerText = encryptedMessage
+    }
+
+    function decode() {
+      const textForDecode = document.getElementById("text-decode").value
+      const textareaResult = document.getElementById("result-decode")
+
+      const decryptedMessage = CaesarCipher.decrypt(textForDecode, 3)
+      textareaResult.innerText = decryptedMessage
+    }
+
+    function copyEncode() {
+      const textareaResult = document.getElementById("result-encode")
+      textareaResult.disabled = false
+      textareaResult.select()
+      document.execCommand("copy")
+      textareaResult.disabled = true
+    }
+
+    function copyDecode() {
+      const textareaResult = document.getElementById("result-decode")
+      textareaResult.disabled = false
+      textareaResult.select()
+      document.execCommand("copy")
+      textareaResult.disabled = true
+    }
+
+    const CaesarCipher = {
+      encrypt(message, shift) {
+        let encryptedMessage = ''
+
+        for (let i = 0; i < message.length; i++) {
+          let char = message[i]
+
+          if (char.match(/[A-Z]/)) {
+            let code = message.charCodeAt(i)
+            code = ((code - 65 + shift) % 26) + 65
+            char = String.fromCharCode(code)
+          } else if (char.match(/[a-z]/)) {
+            let code = message.charCodeAt(i)
+            code = ((code - 97 + shift) % 26) + 97
+            char = String.fromCharCode(code)
+          }
+
+          encryptedMessage += char
+        }
+
+        return encryptedMessage
+      },
+
+      decrypt(message, shift) {
+        return this.encrypt(message, 26 - shift)
+      }
+    }
+  </script>
+</body>
+</body>
+
+</html>
