@@ -1,17 +1,17 @@
 # Ceasar Cipher
-Projeto que implementa a cifra de César, usando JavaScript.
+Project that implements the Caesar cipher, using JavaScript.
 
-A Cifra de César é uma das técnicas de criptografia mais simples e conhecidas. É um tipo de cifra de substituição em que cada letra no texto original é 'deslocada' um número fixo de posições abaixo no alfabeto.
+The Caesar Cipher is one of the simplest and most well-known encryption techniques. It's a type of substitution cipher where each letter in the original text is 'shifted' a fixed number of positions down the alphabet.
 
-Por exemplo, com um deslocamento de 1, A seria substituído por B, B se tornaria C, e assim por diante. O deslocamento é a chave para a cifra. O nome "Cifra de César" vem do imperador romano Júlio César, que supostamente usou esta cifra com um deslocamento de 3 para se comunicar com seus generais.
+For example, with a shift of 1, A would be replaced by B, B would become C, and so on. The shift is the key to the cipher. The name "Caesar Cipher" comes from the Roman Emperor Julius Caesar, who reportedly used this cipher with a shift of 3 to communicate with his generals.
 
-Aqui está um exemplo de como a Cifra de César funciona:
+Here's an example of how the Caesar Cipher works:
 
-Texto original: HELLO Deslocamento: 3 Texto criptografado: KHOOR
+Original text: HELLO Shift: 3 Encrypted text: KHOOR
 
-Como você pode ver, cada letra no texto original foi deslocada 3 posições abaixo no alfabeto.
+As you can see, each letter in the original text was shifted 3 positions down the alphabet.
 
-A Cifra de César é uma cifra simétrica, o que significa que para descriptografar a mensagem você faria o processo inverso, ou seja, deslocaria as letras 3 posições acima no alfabeto.
+The Caesar Cipher is a symmetric cipher, which means that to decrypt the message you would do the reverse process, i.e., shift the letters 3 positions up the alphabet.
 
 # Demo
-Acesse o site: <a href="https://ceasar-cipher.netlify.app/" target="_blank">https://ceasar-cipher.netlify.app</a>
+Access the website: https://ceasar-cipher.netlify.app/
